@@ -57,12 +57,11 @@
                                             <span class="badge bg-<?= $warna; ?>" style="font-size: 0.9rem;"><?= ucfirst($status); ?></span>
                                         </td>
                                         <td>
+                                            <a href="<?= base_url('aduan/show/' . $w->aduan_id); ?>" class="btn btn-primary btn-sm mb-1">Lihat</a>
                                             <?php if ($this->session->userdata('warga_id') == $w->warga_id): ?>
-                                                <a href="<?= base_url('aduan/show/' . $w->aduan_id); ?>" class="btn btn-primary btn-sm mb-1">Lihat</a>
                                                 <a href="<?= base_url('aduan/edit/' . $w->aduan_id); ?>" class="btn btn-warning btn-sm mb-1">Edit</a>
                                                 <a href="<?= base_url('aduan/delete/' . $w->aduan_id); ?>" class="btn btn-danger btn-sm mb-1" onclick="return confirm('Yakin ingin menghapus aduan <?= htmlspecialchars($w->nama); ?>?');">Hapus</a>
                                             <?php else: ?>
-                                                <button class="btn btn-primary btn-sm mb-1" disabled>Lihat</button>
                                                 <button class="btn btn-warning btn-sm mb-1" disabled>Edit</button>
                                                 <button class="btn btn-danger btn-sm mb-1" disabled>Hapus</button>
                                             <?php endif; ?>
@@ -77,6 +76,9 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>;
+    </script>
+
 </body>
+
 </html>

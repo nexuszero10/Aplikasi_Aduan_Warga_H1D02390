@@ -1,10 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Aduan extends CI_Controller
-{
-    public function __construct()
-    {
+class Aduan extends CI_Controller{
+    public function __construct(){
         parent::__construct();
         $this->load->model('Aduan_model');
         $this->load->library('session');
@@ -15,8 +13,7 @@ class Aduan extends CI_Controller
     }
 
     // menampilkan halaman edit aduan
-    public function edit($aduan_id)
-    {
+    public function edit($aduan_id){
         $aduan = $this->Aduan_model->get_by_id($aduan_id);
 
         $data['aduan'] = $aduan;
@@ -24,16 +21,14 @@ class Aduan extends CI_Controller
     }
 
     // menampilkan halaman detail aduan
-    public function show($aduan_id)
-    {
+    public function show($aduan_id){
         $aduan = $this->Aduan_model->get_by_id($aduan_id);
         $data['aduan'] = $aduan;
         $this->load->view('warga/show', $data);
     }
 
     // mengambil data dari form tambah aduan oleh warga
-    public function store()
-    {
+    public function store(){
         $data = [
             'warga_id' => $this->session->userdata('warga_id'),
             'detail'   => $this->input->post('detail', true),
@@ -44,8 +39,7 @@ class Aduan extends CI_Controller
     }
 
     // menangani update aduan oleh warga
-    public function update($aduan_id)
-    {
+    public function update($aduan_id){
         $aduan = $this->Aduan_model->get_by_id($aduan_id);
         $data = [
             'detail' => $this->input->post('detail'),
@@ -57,10 +51,16 @@ class Aduan extends CI_Controller
     }
 
     // menangani delete aduan oleh warga 
-    public function delete($aduan_id)
-    {
+    public function delete($aduan_id){
         $aduan = $this->Aduan_model->get_by_id($aduan_id);
         $this->Aduan_model->delete($aduan_id);
         redirect('warga');
     }
+
+    public function chartData(){
+        $this->load->model('Aduan_model');
+        $data = $this->Aduan_model->getAduanCountByStatus();
+        echo json_encode($data);
+    }
+
 }

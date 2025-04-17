@@ -4,12 +4,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Warga_model extends CI_Model{
 
     // Ambil semua data warga beserta aduan mereka
-    public function get_all(){
-        $this->db->select('aduan.aduan_id, warga.warga_id, warga.nama, warga.telepon, aduan.status, aduan.detail');
+    public function get_all() {
+        $warga_id = $this->session->userdata('warga_id');
+        
+        $this->db->select('aduan.*, warga.nama, warga.telepon');
         $this->db->from('aduan');
         $this->db->join('warga', 'warga.warga_id = aduan.warga_id');
+        
+        // Urutkan agar aduan milik warga yang login berada di atas
+        $this->db->order_by("aduan.warga_id = $warga_id", "DESC", false);
+        // Lalu urutkan berdasarkan status
+        $this->db->order_by("FIELD(aduan.status, 'baru', 'diproses', 'selesai')", null, false);
+        $this->db->order_by('aduan.aduan_id', 'DESC');
+    
         return $this->db->get()->result();
     }
+    
 
     // Menambahkan data warga baru
     public function insert($data){

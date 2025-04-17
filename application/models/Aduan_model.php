@@ -8,7 +8,7 @@ class Aduan_model extends CI_Model{
         $this->db->select('aduan.*, warga.nama, warga.telepon');
         $this->db->from('aduan');
         $this->db->join('warga', 'warga.warga_id = aduan.warga_id');
-        $this->db->order_by('aduan.aduan_id', 'DESC');
+        $this->db->order_by("FIELD(aduan.status, 'baru', 'diproses', 'selesai')", null, false);
         return $this->db->get()->result();
     }
 
@@ -46,5 +46,14 @@ class Aduan_model extends CI_Model{
         $this->db->join('warga', 'warga.warga_id = aduan.warga_id');
         $this->db->where('aduan.aduan_id', $aduan_id);
         return $this->db->get()->row();
+    }
+
+    // mengambil data klasifikasi aduan
+    public function getAduanCountByStatus(){
+        $this->db->select('status, COUNT(*) as total');
+        $this->db->from('aduan');
+        $this->db->group_by('status');
+        $query = $this->db->get();
+        return $query->result();    
     }
 }

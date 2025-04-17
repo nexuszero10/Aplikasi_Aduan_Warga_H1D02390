@@ -15,7 +15,6 @@ class Aduan extends CI_Controller{
     // menampilkan halaman edit aduan
     public function edit($aduan_id){
         $aduan = $this->Aduan_model->get_by_id($aduan_id);
-
         $data['aduan'] = $aduan;
         $this->load->view('warga/edit', $data);
     }

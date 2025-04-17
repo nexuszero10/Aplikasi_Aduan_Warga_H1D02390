@@ -21,7 +21,7 @@ class Aduan extends CI_Controller{
 
     // menampilkan halaman detail aduan
     public function show($aduan_id){
-        $aduan = $this->Aduan_model->get_by_id($aduan_id);
+        $aduan = $this->Aduan_model->get_by_id_with_warga($aduan_id);
         $data['aduan'] = $aduan;
         $this->load->view('warga/show', $data);
     }

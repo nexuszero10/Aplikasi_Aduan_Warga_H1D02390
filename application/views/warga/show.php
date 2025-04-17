@@ -19,9 +19,9 @@
                 <form>
                     <input type="hidden" name="warga_id" value="<?= $this->session->userdata('warga_id'); ?>">
                     <label for="nama">Nama</label>
-                    <input type="text" class="form-control mb-3 mt-2" readonly value="<?= $this->session->userdata('nama'); ?>">
+                    <input type="text" class="form-control mb-3 mt-2" readonly value="<?= htmlspecialchars($aduan->nama); ?>">
                     <label for="telepon">Telepon</label>
-                    <input type="text" class="form-control mb-3 mt-2" readonly value="<?= $this->session->userdata('telepon'); ?>">
+                    <input type="text" class="form-control mb-3 mt-2" readonly value="<?= htmlspecialchars($aduan->telepon); ?>">
                     <label for="detail">Detail Aduan</label>
                     <textarea name="detail" id="detail" class="form-control mb-3 mt-2" rows="4" readonly><?= htmlspecialchars($aduan->detail) ?></textarea>
                     <label for="status">Status</label>

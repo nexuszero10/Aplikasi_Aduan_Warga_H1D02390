@@ -20,9 +20,9 @@
                 <form action="<?= base_url('aduan/update/' . $aduan->aduan_id) ?>" method="post">
                     <input type="hidden" name="warga_id" value="<?= $this->session->userdata('warga_id'); ?>">
                     <label for="nama">Nama</label>
-                    <input type="text" class="form-control mb-3 mt-2" readonly value="<?= htmlspecialchars($aduan->nama); ?>">
+                    <input type="text" class="form-control mb-3 mt-2" readonly value="<?= $this->session->userdata('nama'); ?>">
                     <label for="telepon">Telepon</label>
-                    <input type="text" class="form-control mb-3 mt-2" readonly value="<?= htmlspecialchars($aduan->telepon); ?>">
+                    <input type="text" class="form-control mb-3 mt-2" readonly value="<?= $this->session->userdata('telepon'); ?>">
                     <label for="detail">Detail Aduan</label>
                     <textarea name="detail" id="detail" class="form-control mb-3 mt-2" rows="4" required autofocus><?= htmlspecialchars($aduan->detail) ?></textarea>
                     <label for="status">Status</label>
